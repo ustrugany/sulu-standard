@@ -13,6 +13,8 @@
     <title>Narrow Jumbotron Template for Bootstrap</title>
     {% stylesheets
         '@ClientWebsiteBundle/Resources/public/bootstrap/css/bootstrap.min.css'
+        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/css/bootstrap-material-design.min.css'
+        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/css/ripples.min.css'
         '@ClientWebsiteBundle/Resources/public/custom/css/ie10-viewport-bug-workaround.css'
         '@ClientWebsiteBundle/Resources/public/custom/css/overrides.css'
     %}
@@ -28,89 +30,82 @@
 
 <body>
     <div class="container">
-        <div class="header clearfix">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a></li>
-                    <li role="presentation"><a href="#">About</a></li>
-                    <li role="presentation"><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <h3 class="text-muted">Project name</h3>
-        </div>
-
-        <!-- header -->
-        <div class="masthead">
-            <div class="row">
-                <div class="col-lg-9">
-                    <h3 class="text-muted">
-                        <img height="20" src="{{ asset('bundles/clientwebsite/default/images/sulu.png') }}" />
-                        <a href="{{ sulu_content_root_path() }}">SULU CMF</a>
-                    </h3>
-                    <div>
+        <div class="row">
+            <div class="col-md-8">
+                <h1>
+                    <a href="{{ sulu_content_root_path() }}">Strugacz Piotr</a>
+                </h1>
+                <p class="lead">Software developer</p>
+            </div>
+            <div class="col-md-4">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="bootstrap-elements.html" data-target="#" aria-expanded="false">
+                        Language <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
                         {% for locale, url in urls %}
-                            <a href="{{ sulu_content_path((url?:'/'),request.webspaceKey,locale) }}">{{ locale }}</a>
-                            {% if not loop.last %}&nbsp;|&nbsp;{% endif %}
+                            <li>
+                                <a href="{{ sulu_content_path((url?:'/'),request.webspaceKey,locale) }}">{{ locale }}</a>
+                            </li>
                         {% endfor %}
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <form action="{{ path(request.portalUrl ~ '.website_search') }}" method="GET">
-                        <input name="q" type="text" placeholder="Search" />
-                        <input type="submit" value="Go" />
-                    </form>
+                    </ul>
                 </div>
             </div>
-            <br/>
+        </div>
+        <div class="row">
             {% include 'ClientWebsiteBundle:views:navigation.html.twig' %}
         </div>
+        {#Bootstrap Material Design http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html#}
+        <div class="row">
+            {#<div class="row">#}
+                {#<div class="col-lg-3 well bs-component">#}
+                    {#<form class="form-horizontal" action="{{ path(request.portalUrl ~ '.website_search') }}" method="GET">#}
+                        {#<fieldset>#}
+                            {#<div class="form-group is-empty">#}
+                                {#<label for="q" class="col-md-2 control-label">Search</label>#}
+                                {#<div class="col-md-10">#}
+                                    {#<input type="text" class="form-control" id="q" placeholder="Search">#}
+                                {#</div>#}
+                                {#<span class="material-input"></span>#}
+                            {#</div>#}
+                            {#<div class="form-group">#}
+                                {#<div class="col-md-10 col-md-offset-2">#}
+                                    {#<button type="submit" class="btn btn-primary">Go</button>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</fieldset>#}
+                    {#</form>#}
+                {#</div>#}
+            {#</div>#}
+        </div>
         <!-- /header -->
-
-        <!-- content -->
-        {% block content %}{% endblock %}
-        <!-- /content -->
-
-        <div class="jumbotron">
-            <h1>Jumbotron heading</h1>
-            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-        </div>
-
-        <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Subheading</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Subheading</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                <h4>Subheading</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-
-            <div class="col-lg-6">
-                <h4>Subheading</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Subheading</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                <h4>Subheading</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- content -->
+                <div class="bs-component">
+                    {% block content %}{% endblock %}
+                </div>
+                <!-- /content -->
             </div>
         </div>
-
         <footer class="footer">
-            <p>&copy; 2015 Company, Inc.</p>
+            <p>&copy; 2016 Piotr Strugacz</p>
         </footer>
-
     </div> <!-- /container -->
     {% javascripts
         'http://code.jquery.com/jquery-1.11.0.min.js'
         '@ClientWebsiteBundle/Resources/public/custom/js/ie10-viewport-bug-workaround.js'
         '@ClientWebsiteBundle/Resources/public/default/js/bootstrap.js'
+        '@ClientWebsiteBundle/Resources/public/jquery/jquery.min.js'
+        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/js/material.min.js'
+        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/js/ripples.min.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    <script type="text/javascript">
+        $.ready(function () {
+            $.material.init()
+        });
+    </script>
 </body>
 </html>
