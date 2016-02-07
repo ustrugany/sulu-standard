@@ -1,111 +1,77 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>@TODO put page title here</title>
     {% stylesheets
-        '@ClientWebsiteBundle/Resources/public/bootstrap/css/bootstrap.min.css'
-        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/css/bootstrap-material-design.min.css'
-        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/css/ripples.min.css'
-        '@ClientWebsiteBundle/Resources/public/custom/css/ie10-viewport-bug-workaround.css'
-        '@ClientWebsiteBundle/Resources/public/custom/css/overrides.css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+        'bundles/clientwebsite/assets/css/style.css'
+        'bundles/clientwebsite/bootstrap/css/bootstrap.css'
+        'bundles/clientwebsite/bootstrap/css/bootstrap-theme.css'
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <link href="http://fonts.googleapis.com/css?family=Lobster|PT+Sans+Narrow:400,700|PT+Sans:400,700" rel="stylesheet" type="text/css">    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <div id="fb-root"></div>
     <![endif]-->
 </head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h1>
-                    <a href="{{ sulu_content_root_path() }}">Strugacz Piotr</a>
-                </h1>
-                <p class="lead">Software developer</p>
-            </div>
-            <div class="col-md-4">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="bootstrap-elements.html" data-target="#" aria-expanded="false">
-                        Language <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for locale, url in urls %}
-                            <li>
-                                <a href="{{ sulu_content_path((url?:'/'),request.webspaceKey,locale) }}">{{ locale }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+    <body>
+        <header>
+            <div class="row">
+                <div class="col-lg-4">
+                    <h1>
+                        <img height="20" src="{{ asset('bundles/clientwebsite/assets/images/logo.png') }}" />
+                        <a href="{{ sulu_content_root_path() }}">Logo</a>
+                    </h1>
+                </div>
+                <div class="col-lg-5">
+                    {% for locale, url in urls %}
+                        <a href="{{ sulu_content_path((url?:'/'),request.webspaceKey,locale) }}">{{ locale }}</a>
+                        {% if not loop.last %}&nbsp;|&nbsp;{% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-lg-3">
+                    <form action="{{ path(request.portalUrl ~ '.website_search') }}" method="GET">
+                        <input name="q" type="text" placeholder="Search" />
+                        <input type="submit" value="Go" />
+                    </form>
                 </div>
             </div>
-        </div>
-        <div class="row">
             {% include 'ClientWebsiteBundle:views:navigation.html.twig' %}
-        </div>
-        {#Bootstrap Material Design http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html#}
-        <div class="row">
-            {#<div class="row">#}
-                {#<div class="col-lg-3 well bs-component">#}
-                    {#<form class="form-horizontal" action="{{ path(request.portalUrl ~ '.website_search') }}" method="GET">#}
-                        {#<fieldset>#}
-                            {#<div class="form-group is-empty">#}
-                                {#<label for="q" class="col-md-2 control-label">Search</label>#}
-                                {#<div class="col-md-10">#}
-                                    {#<input type="text" class="form-control" id="q" placeholder="Search">#}
-                                {#</div>#}
-                                {#<span class="material-input"></span>#}
-                            {#</div>#}
-                            {#<div class="form-group">#}
-                                {#<div class="col-md-10 col-md-offset-2">#}
-                                    {#<button type="submit" class="btn btn-primary">Go</button>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</fieldset>#}
-                    {#</form>#}
-                {#</div>#}
-            {#</div>#}
-        </div>
-        <!-- /header -->
-        <div class="row">
-            <div class="col-md-12">
+        </header>
+        <div class="container">
+            <div class="row">
                 <!-- content -->
-                <div class="bs-component">
-                    {% block content %}{% endblock %}
-                </div>
+                {% block content %}{% endblock %}
                 <!-- /content -->
             </div>
         </div>
-        <footer class="footer">
-            <p>&copy; 2016 Piotr Strugacz</p>
+        <footer class="row">
+            <div class="col-lg-4">&copy; SULU CMF 2014</div>
+            <div class="col-lg-4">Access to the demo <a href="/admin" target="_blank">admin</a></div>
+            <div class="col-lg-4">Credentials: demo / demo</div>
         </footer>
-    </div> <!-- /container -->
-    {% javascripts
-        'http://code.jquery.com/jquery-1.11.0.min.js'
-        '@ClientWebsiteBundle/Resources/public/custom/js/ie10-viewport-bug-workaround.js'
-        '@ClientWebsiteBundle/Resources/public/default/js/bootstrap.js'
-        '@ClientWebsiteBundle/Resources/public/jquery/jquery.min.js'
-        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/js/material.min.js'
-        '@ClientWebsiteBundle/Resources/public/bootstrap-material-design/js/ripples.min.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <script type="text/javascript">
-        $.ready(function () {
-            $.material.init()
-        });
-    </script>
-</body>
+        {% javascripts
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
+            '@ClientWebsiteBundle/Resources/public/bootstrap/js/bootstrap.min.js'
+        %}
+           <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <!-- Facebook -->
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pl_PL/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            $.ready(function () {console.debug('Loaded')});
+        </script>
+    </body>
 </html>
