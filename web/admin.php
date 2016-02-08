@@ -10,6 +10,10 @@ defined('SULU_MAINTENANCE') || define('SULU_MAINTENANCE', getenv('SULU_MAINTENAN
 defined('SYMFONY_DEBUG') ||
     define('SYMFONY_DEBUG', filter_var(getenv('SYMFONY_DEBUG') ?: SYMFONY_ENV === 'dev', FILTER_VALIDATE_BOOLEAN));
 
+//if(function_exists('xdebug_disable')) {
+    xdebug_disable();
+//}
+
 // maintenance mode
 $maintenanceFilePath = __DIR__ . '/../app/maintenance.php';
 if (SULU_MAINTENANCE && file_exists($maintenanceFilePath)) {
