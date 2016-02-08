@@ -1,77 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
+    <!-- Metas -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Piotr Strugacz Agile Web Developer {{ content.title ? ' - '~content.title : '' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@TODO put page title here</title>
+    {% block meta %}{% include "ClientWebsiteBundle:blocks:meta.html.twig" %}{% endblock %}
     {% stylesheets
-        'bundles/clientwebsite/assets/css/style.css'
         'bundles/clientwebsite/bootstrap/css/bootstrap.css'
-        'bundles/clientwebsite/bootstrap/css/bootstrap-theme.css'
+        'bundles/clientwebsite/assets/css/owl-carousel/owl.carousel.css'
+        'bundles/clientwebsite/assets/css/owl-carousel/owl.theme.css'
+        'bundles/clientwebsite/assets/css/css/magnific-popup.css'
+        'bundles/clientwebsite/assets/css/font.css'
+        'bundles/clientwebsite/assets/css/fontello.css'
+        'bundles/clientwebsite/assets/css/base.css'
+        'bundles/clientwebsite/assets/css/main.css'
         filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
+    <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    <link href="http://fonts.googleapis.com/css?family=Lobster|PT+Sans+Narrow:400,700|PT+Sans:400,700" rel="stylesheet" type="text/css">    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <div id="fb-root"></div>
-    <![endif]-->
 </head>
-    <body>
-        <header>
-            <div class="row">
-                <div class="col-lg-4">
-                    <h1>
-                        <img height="20" src="{{ asset('bundles/clientwebsite/assets/images/logo.png') }}" />
-                        <a href="{{ sulu_content_root_path() }}">Logo</a>
-                    </h1>
-                </div>
-                <div class="col-lg-5">
-                    {% for locale, url in urls %}
-                        <a href="{{ sulu_content_path((url?:'/'),request.webspaceKey,locale) }}">{{ locale }}</a>
-                        {% if not loop.last %}&nbsp;|&nbsp;{% endif %}
-                    {% endfor %}
-                </div>
-                <div class="col-lg-3">
-                    <form action="{{ path(request.portalUrl ~ '.website_search') }}" method="GET">
-                        <input name="q" type="text" placeholder="Search" />
-                        <input type="submit" value="Go" />
-                    </form>
-                </div>
-            </div>
-            {% include 'ClientWebsiteBundle:views:navigation.html.twig' %}
-        </header>
-        <div class="container">
-            <div class="row">
-                <!-- content -->
-                {% block content %}{% endblock %}
-                <!-- /content -->
-            </div>
+<body>
+    <!-- Preloader -->
+    <div id="loader">
+        <!-- Preloader inner -->
+        <div id="loaderInner">
+            <div class="spinner"></div>
         </div>
-        <footer class="row">
-            <div class="col-lg-4">&copy; SULU CMF 2014</div>
-            <div class="col-lg-4">Access to the demo <a href="/admin" target="_blank">admin</a></div>
-            <div class="col-lg-4">Credentials: demo / demo</div>
-        </footer>
-        {% javascripts
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
-            '@ClientWebsiteBundle/Resources/public/bootstrap/js/bootstrap.min.js'
-        %}
-           <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        <!-- Facebook -->
-        <script>
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/pl_PL/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+        <!-- End preloader inner -->
+    </div>
+    <!-- End preloader-->
+    <!--Wrapper-->
+    <div id="wrapper" class="margLTop  margLBottom">
+        <!--Container-->
+        <div class="container">
+            <div class="row ">
+                <!--Left content-->
+                <div class="col-md-3 nopr left-content">
+                    <!--Header-->
+                    <header id="header">
+                        <!--Main header-->
+                        <div class="main-header">
+                            <!--Profile image-->
+                            <figure class="img-profile">
+                                <img src="{{ asset('bundles/clientwebsite/assets/img/profile.jpg') }}" alt=""/>
+                                <figcaption class="name-profile">
+                                    <span>Piotr Strugacz<sup>&reg;</sup></span>
+                                </figcaption>
+                            </figure>
+                            <!--End profile image-->
+                            {% include 'ClientWebsiteBundle:blocks:navigation.html.twig' %}
+                        </div>
+                        <!--End main header-->
+                        {% if content.snippets is defined %}
+                            {% include 'ClientWebsiteBundle:blocks:social.html.twig' with {snippets: content.snippets|first} %}
+                        {% endif %}
+                    </header>
+                    <!--End  header-->
+                </div>
+                <!--End left content-->
+                <!--Right content-->
+                <div class="col-md-9 right-content">
+                    {% block content %}{% endblock %}
+                </div>
+                <!--End right content-->
+            </div>
+            <!--End  row-->
+        </div>
+        <!--End  container-->
+    </div>
+    <!--End wrapper-->
+    <!--Javascript-->
+    {% javascripts
+        'https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false'
+        '@ClientWebsiteBundle/Resources/public/vendor/jquery-1.11.3.min.js'
+        '@ClientWebsiteBundle/Resources/public/bootstrap/js/bootstrap.min.js'
+        '@ClientWebsiteBundle/Resources/public/vendor/jquery-migrate-1.2.1.js'
+        '@ClientWebsiteBundle/Resources/public/vendor/owl.carousel.js'
+        '@ClientWebsiteBundle/Resources/public/vendor/jquery.magnific-popup.js'
+        '@ClientWebsiteBundle/Resources/public/vendor/jquery.easytabs.min.js'
+        '@ClientWebsiteBundle/Resources/public/vendor/modernizr.js'
+        '@ClientWebsiteBundle/Resources/public/vendor/placeholders.min.js'
+        '@ClientWebsiteBundle/Resources/public/assets/script/script.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        (function ($) {
+            "use strict";
+            $(document).ready(function () {
+                var styles = [
+                    {
+                        stylers: [
+                            {saturation: -100}
 
-            $.ready(function () {console.debug('Loaded')});
-        </script>
+                        ]
+                    }, {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [
+                            {hue: "#74b7b0"},
+                            {visibility: 'simplified'}
+                        ]
+                    }, {
+                        featureType: 'road',
+                        elementType: 'labels',
+                        stylers: [
+                            {visibility: 'on'}
+                        ]
+                    }
+                ],
+                lat = 50.811819,
+                lng = 19.120309,
+                customMap = new google.maps.StyledMapType(styles, {name: 'Styled Map'}),
+                mapOptions = {
+                    zoom: 14,
+                    scrollwheel: false,
+                    disableDefaultUI: true,
+                    center: new google.maps.LatLng(lat, lng),
+                    mapTypeControlOptions: {
+                        mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+                    }
+                },
+                map = new google.maps.Map(document.getElementById('map'), mapOptions),
+                myLatlng = new google.maps.LatLng(lat, lng),
+                marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    icon: {
+                        url: 'img/marker.png',
+                        scaledSize: new google.maps.Size(26, 42)
+                    }
+                });
+                map.mapTypes.set('map_style', customMap);
+                map.setMapTypeId('map_style');
+            });
+            // End google map location
+        })(jQuery);
+    </script>
+    <!-- Google analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-73447236-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End google analytics -->
     </body>
 </html>
