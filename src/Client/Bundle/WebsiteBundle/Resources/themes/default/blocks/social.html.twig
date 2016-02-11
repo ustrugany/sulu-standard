@@ -6,3 +6,16 @@
         <li><a href="{{ snippets.twitterUrl }}"><i class="icon-twitter"></i></a></li>
     </ul>
 </div>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Person",
+  "name" : "Piotr Strugacz",
+  "url" : "{{ request.portalUrl }}",
+  "sameAs" : [
+    "{{ snippets.linkedInUrl }}",
+    "{{ snippets.githubUrl }}",
+    "{{ snippets.twitterUrl }}"
+  ]
+}
+</script>
