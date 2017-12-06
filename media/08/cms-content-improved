@@ -1,0 +1,53 @@
+I. Background: 
+1. Services and Models:
+
+ReferenceContextResolver/Factory
+ReferenceContextResolver/Strategy.resolve(ReferenceContext, ParameterBagInterface)
+ - example: EsmSessionStrategy
+
+ParameterBag
+
+ReferenceContextResolver.resolve(ReferenceContext, ParameterBagInterface)
+ - contains strategies 
+
+CmsContentRenderer
+CmsContent/Renderer
+ - example: TwigRenderer
+
+
+RegerenceContext
+ - attributes: Name, Slug
+ - example: "Esm Session", "esm-session"
+
+
+2. Controllers and Actions:
+
+CmsContentController.actionImprovedRender($slug, $referenceContextSlug = null)
+ - find CmsContent using passed "slug" request argument
+ - find ReferenceContext using passed "referenceContextSlug" request argument
+ - use ReferenceContextResolverFactory to build ReferenceContextResolver, 
+	resolve "references" using found ReferenceContext and passed request parameteres.
+ - use CmsContentRenderer resolved "references" to render "cmsContent"
+
+
+CmsContentController.actionImprovedRawRender($referenceContextSlug = null)
+ - similar as above but does not require physically existing CmsContent entry rather then uses passed POST content e.g. "{{loggedInUser.Name}} is displaying: {{eventDelegates}}"
+	
+
+II. TODO:
+
+1. List existing ESM's usages of CmsContent
+ - what CmsTemplates are used
+ - what params and their values are passed to which CmsTemplates
+
+ 1. CmsContent for EventSolutionPackages:
+	- CmsContentTypeId = 1
+	- frontend/app/scripts/controllers/slide/summary/solution/index-controller.js:33
+	- frontend/app/scripts/services/event-solution-package/event-solution-package-provider.js:43
+	- frontend/app/scripts/controllers/slide/solution/index-controller.js:77 
+ 2. Email rendering
+	- frontend/app/scripts/services/cms-content/dashboard-email-rendering-service.js:17
+	- frontend/app/scripts/controllers/presenter/dashboard/esm-sessions-controller.js:127
+
+2. Move 
+

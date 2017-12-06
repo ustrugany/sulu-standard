@@ -1,0 +1,12 @@
+{% extends "ClientWebsiteBundle:views:master.html.twig" %}
+{% block content %}
+    <!--About Tab-->
+    {% include 'ClientWebsiteBundle:sections:about.html.twig' with {contact: content} %}
+    <!--End about tab-->
+    <!--Portfolio Tab-->
+    {#{% include 'ClientWebsiteBundle:sections:portfolio.html.twig' %}#}
+    <!--End portfolio tab-->
+    <!--Blog Tab-->
+    {#{% include 'ClientWebsiteBundle:sections:blog.html.twig' %}#}
+    <!--End blog tab-->
+{% endblock %}

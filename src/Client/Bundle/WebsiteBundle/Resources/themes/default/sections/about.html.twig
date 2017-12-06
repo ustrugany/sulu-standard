@@ -1,0 +1,28 @@
+<section id="about" class="bgWhite ofsInBottom">
+    <!--About -->
+    <div class="about">
+        {% include 'ClientWebsiteBundle:blocks:who-am-i.html.twig' with {contact: content} %}
+        {% include 'ClientWebsiteBundle:blocks:personal-skills.html.twig' with {contact: content} %}
+        {% include 'ClientWebsiteBundle:blocks:experience.html.twig' with {contact: content}%}
+        {% include 'ClientWebsiteBundle:blocks:education.html.twig' with {contact: content} %}
+        {% include 'ClientWebsiteBundle:blocks:services.html.twig' with {contact: content} %}
+        {#{% include 'ClientWebsiteBundle:blocks:testimonials.html.twig' with {contact: content} %}#}
+        <!--Button-->
+        <div class="button margTop ofsInTop tCenter">
+            {% include 'ClientWebsiteBundle:blocks:divider-center.html.twig' %}
+            <!--Row-->
+            {% if content.aboutMeCvPdf is not empty %}
+                {% set cvPdf = content.aboutMeCvPdf|first %}
+                <div class="row ">
+                    <div class="col-md-12">
+                        <a class="but opc-1 ico" href="{{ cvPdf.url }}">Download my cv</a>
+                        {#<a class="but opc-2 ico" href="#">Print my resume</a>#}
+                    </div>
+                </div>
+            {% endif %}
+            <!--End row-->
+        </div>
+        <!--End button-->
+    </div>
+    <!--End about-->
+</section>

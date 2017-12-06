@@ -1,7 +1,6 @@
 <?php
-
 /*
- * This file is part of Sulu.
+ * This file is part of the Sulu CMS.
  *
  * (c) MASSIVE ART WebServices GmbH
  *

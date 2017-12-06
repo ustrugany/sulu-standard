@@ -1,0 +1,47 @@
+{% if content.contactInfo is defined %}
+{% set contactInfo = content.contactInfo|first %}
+    <div class="content">
+        <!--Block content-->
+        <div class="block-content ">
+            <!--Info-->
+            <div class="block-info">
+                <!--Row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="info-holder   margTMedium">
+                            {% if contactInfo.addresses is not empty %}
+                                {% set address = contactInfo.addresses[1] %}
+                                <!--Address info-->
+                                <div class="address-info">
+                                    <i class="icon-location"></i>
+                                    <p>{{ address.title }} {{ address.street }}<br>{{ address.city }}, {{ address.zip }}.</p>
+                                </div>
+                                <!--End address info-->
+                            {% endif %}
+                            <!--Contact info-->
+                            <div class="contact-info tCenter">
+                                <ul>
+                                    <li>
+                                        <div class="ico"><i class="icon-mail"></i></div>
+                                        <p>Email: {{ contactInfo.mainEmail }}</p></li>
+                                    <li>
+                                        <div class="ico"><i class="icon-phone"></i></div>
+                                        <p>Tel: {{ contactInfo.mainPhone }}</p></li>
+                                    <li>
+                                        <div class="ico"><i class="icon-link"></i></div>
+                                        <p>WWW: <a href="piotr.strugacz.eu">piotr.strugacz.eu</a>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--End contact info-->
+                        </div>
+                    </div>
+                </div>
+                <!--End row-->
+            </div>
+            <!--End info-->
+        </div>
+        <!--End block content-->
+    </div>
+{% endif %}

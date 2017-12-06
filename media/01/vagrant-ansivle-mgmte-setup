@@ -1,0 +1,97 @@
+https://github.com/xsolve-pl/htx-box
+
+- php: 
+PHP 5.5.9-1ubuntu4.4 (cli) (built: Sep  4 2014 06:56:34) 
+Copyright (c) 1997-2014 The PHP Group
+Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies
+    with Zend OPcache v7.0.3, Copyright (c) 1999-2014, by Zend Technologies
+    with Xdebug v2.2.3, Copyright (c) 2002-2013, by Derick Rethans
+
+- ubuntu:
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 14.04.1 LTS
+Release:	14.04
+Codename:	trusty
+
+- nginx:
+ubuntu@ip-172-31-1-76:~$ nginx -v
+nginx version: nginx/1.6.2
+
+- composer globally / (optionally sudo apt-get install)
+
+php modules:
+- ubuntu@ip-172-31-1-76:/srv/httpd/ns.managementevents.com/html (1.4)$ php -m
+[PHP Modules]
+bcmath
+bz2
+calendar
+Core
+ctype
+curl
+date
+dba
+dom
+ereg
+exif
+fileinfo
+filter
+ftp
+gettext
+hash
+iconv
+json
+libxml
+mbstring
+mcrypt
+mhash
+mysql
+mysqli
+openssl
+pcntl
+pcre
+PDO
+pdo_mysql
+Phar
+posix
+readline
+redis
+Reflection
+session
+shmop
+SimpleXML
+soap
+sockets
+SPLt
+standard
+sysvmsg
+sysvsem
+sysvshm
+tokenizer
+wddx
+xdebug
+xml
+xmlreader
+xmlwriter
+Zend OPcache
+zip
+zlib
+
+[Zend Modules]
+Xdebug
+Zend OPcache
+
+
+- git (anssible forwards ssh keys)
+- 
+
+
+
+
+
+
+MAGIA:
+
+git log | vim - (forwardowuje output do vima)
+
+w !sudo tee % (pozwala zapisać plik z uprawnieniami sudo)

@@ -1,0 +1,20 @@
+<!--Main navigation-->
+<nav id="main-nav" class="main-nav clearfix tabbed">
+    <ul>
+        <li><a
+                {% if request.resourceLocator == '/' %}
+                    class="active"
+                {% endif %}
+                href="/"><i class="icon-user"></i>About</a></li>
+        {#<li><a href="#portfolio"><i class="icon-camera"></i>Portfolio</a></li>#}
+        {#<li><a href="#blog"><i class="icon-chat"></i>Blog</a></li>#}
+        <li>
+            <a
+                {% if request.resourceLocator == '/contact' %}
+                    class="active"
+                {% endif %}
+                href="{{ sulu_content_path('/contact') }}"><i class="icon-phone"></i>Contact
+            </a>
+        </li>
+    </ul>
+</nav>
