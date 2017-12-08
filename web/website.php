@@ -39,9 +39,9 @@ if (SYMFONY_DEBUG) {
 // Change 'sf2' to a unique prefix in order to prevent cache key conflicts
 // with other applications also using APC.
 //
-// $apcLoader = new ApcClassLoader('sf2', $loader);
-// $loader->unregister();
-// $apcLoader->register(true);
+//$apcLoader = new ApcClassLoader('piot.strugacz.eu', $loader);
+//$loader->unregister();
+//$apcLoader->register(true);
 
 $kernel = new WebsiteKernel(SYMFONY_ENV, SYMFONY_DEBUG);
 $kernel->loadClassCache();

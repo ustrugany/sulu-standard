@@ -14,14 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block meta %}{% include "ClientWebsiteBundle:blocks:meta.html.twig" %}{% endblock %}
     {% stylesheets
-        '@ClientWebsiteBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/owl-carousel/owl.carousel.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/owl-carousel/owl.theme.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/magnific-popup.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/font.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/fontello.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/base.css'
-        '@ClientWebsiteBundle/Resources/public/dist/css/main.css'
+        'bundles/clientwebsite/dist/css/bootstrap.css'
+        'bundles/clientwebsite/dist/css/owl-carousel/owl.carousel.css'
+        'bundles/clientwebsite/dist/css/owl-carousel/owl.theme.css'
+        'bundles/clientwebsite/dist/css/magnific-popup.css'
+        'bundles/clientwebsite/dist/css/font.css'
+        'bundles/clientwebsite/dist/css/fontello.css'
+        'bundles/clientwebsite/dist/css/base.css'
+        'bundles/clientwebsite/dist/css/main.css'
         filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -90,15 +90,15 @@
     <!--Javascript-->
     {% javascripts
         'https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false'
-        '@ClientWebsiteBundle/Resources/public/vendor/jquery-1.11.3.min.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/jquery-migrate-1.2.1.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/owl.carousel.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/jquery.magnific-popup.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/jquery.easytabs.min.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/modernizr.js'
-        '@ClientWebsiteBundle/Resources/public/vendor/placeholders.min.js'
-        '@ClientWebsiteBundle/Resources/public/dist/script/script.js'
+        'bundles/clientwebsite/vendor/jquery-1.11.3.min.js'
+        'bundles/clientwebsite/vendor/bootstrap/dist/js/bootstrap.min.js'
+        'bundles/clientwebsite/vendor/jquery-migrate-1.2.1.js'
+        'bundles/clientwebsite/vendor/owl.carousel.js'
+        'bundles/clientwebsite/vendor/jquery.magnific-popup.js'
+        'bundles/clientwebsite/vendor/jquery.easytabs.min.js'
+        'bundles/clientwebsite/vendor/modernizr.js'
+        'bundles/clientwebsite/vendor/placeholders.min.js'
+        'bundles/clientwebsite/dist/script/script.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
