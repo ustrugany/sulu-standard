@@ -1,15 +1,13 @@
-<!--Main title-->
+<!--Content-->
 <div class="main-title">
     <h1>who am i</h1>
     {% include 'ClientWebsiteBundle:blocks:divider.html.twig' %}
 </div>
-<!--End main title-->
-<!--Content-->
+<!--End content-->
+<!--Main title-->
 <div class="content">
-    {% set contact = content.aboutMeContacts|first %}
-    {% set description = content.aboutMeDescription %}
     {% if contact is not empty %}
-    <!--Block content-->
+        <!--Block content-->
         <div class="block-content margBSmall">
             <div class=" profile margBSmall">
                 <h1>{{ contact.fullName }}</h1>
@@ -28,52 +26,54 @@
             <!--End row-->
         </div>
         <!--End block content-->
+    {% endif %}
+    {% if description is not empty %}
         <!--Block content-->
         <div class="block-content">
             <div class="info">
                 <!--Row-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="info-list clearfix">
-                                <li>
-                                    <span class="inf">Name </span>
-                                    <span class="value">{{ contact.fullName }}</span>
-                                </li>
-                                <li>
-                                    <span class="inf">Date of birth</span>
-                                    <span class="value">{{ contact.birthday|date('d/m/Y') }}</span>
-                                </li>
-                                {#<li>#}
-                                {#<span class="inf">Address</span>#}
-                                {#<span class="value"> 1234 Street Road City Name</span>#}
-                                {#</li>#}
-                            </ul>
-                        </div>
-
-                        <div class="col-md-6">
-                            <ul class="info-list">
-                                <li>
-                                    <span class="inf">Email</span>
-                                    <span class="value">{{ contact.mainEmail }}</span>
-                                </li>
-                                <li>
-                                    <span class="inf">Phone</span>
-                                    <span class="value">{{ contact.mainPhone }}</span>
-                                </li>
-                                {% if contact.notes is not empty %}
-                                    {% set note = contact.notes|first %}
-                                    <li>
-                                        <span class="inf">Skype</span>
-                                        <span class="value">{{ note.value }}</span>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="info-list clearfix">
+                            <li>
+                                <span class="inf">Name </span>
+                                <span class="value">{{ contact.fullName }}</span>
+                            </li>
+                            <li>
+                                <span class="inf">Date of birth</span>
+                                <span class="value">{{ contact.birthday|date('d/m/Y') }}</span>
+                            </li>
+                            <li>
+                                <span class="inf">Address</span>
+                                <span class="value">{{ attribute(contact.addresses|first, 'title') }}</span>
+                            </li>
+                        </ul>
                     </div>
+
+                    <div class="col-md-6">
+                        <ul class="info-list">
+                            <li>
+                                <span class="inf">Email</span>
+                                <span class="value">{{ contact.mainEmail }}</span>
+                            </li>
+                            <li>
+                                <span class="inf">Phone</span>
+                                <span class="value">{{ contact.mainPhone }}</span>
+                            </li>
+                            {% if contact.notes is not empty %}
+                                {% set note = contact.notes|first %}
+                                <li>
+                                    <span class="inf">Skype</span>
+                                    <span class="value">{{ note.value }}</span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
                 <!--End row-->
             </div>
         </div>
         <!--End block content-->
     {% endif %}
 </div>
-<!--End content-->
+<!--End main title-->

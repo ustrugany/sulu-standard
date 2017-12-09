@@ -8,9 +8,9 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
-    <!-- Metas -->
+    <!-- Meta -->
     <meta charset="utf-8">
-    <title>Piotr Strugacz Agile Web Developer {{ content.title ? ' - '~content.title : '' }}</title>
+    <title>{{ content.title ? ' - '~content.title : '' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block meta %}{% include "ClientWebsiteBundle:blocks:meta.html.twig" %}{% endblock %}
     {% stylesheets
@@ -47,6 +47,8 @@
     </div>
     <!-- End preloader-->
     <!--Wrapper-->
+
+    {% set contact = content.aboutMeContacts|first %}
     <div id="wrapper" class="margLTop  margLBottom">
         <!--Container-->
         <div class="container">
@@ -59,9 +61,9 @@
                         <div class="main-header">
                             <!--Profile image-->
                             <figure class="img-profile">
-                                <img src="{{ asset('bundles/clientwebsite/dist/img/profile.jpg') }}" alt=""/>
+                                <img src="{{ contact.avatar.url }}" alt="{{ contact.fullName }}"/>
                                 <figcaption class="name-profile">
-                                    <span>Piotr Strugacz<sup>&reg;</sup></span>
+                                    <span>{{ contact.fullName }}<sup>&reg;</sup></span>
                                 </figcaption>
                             </figure>
                             <!--End profile image-->
@@ -69,8 +71,8 @@
                         </div>
                         <!--End main header-->
                         {% set socialSnippet = sulu_snippet_load('d0834aec-2670-4f22-b662-f98fdf83a2b1') %}
-                        {% if socialSnippet|default is not empty %}
-                            {% include 'ClientWebsiteBundle:blocks:social.html.twig' with {snippets: socialSnippet.content} %}
+                        {% if content.snippets is defined and content.snippets is not empty %}
+                            {% include 'ClientWebsiteBundle:blocks:social.html.twig' with {snippets: content.snippets|first} %}
                         {% endif %}
                     </header>
                     <!--End  header-->
@@ -89,7 +91,7 @@
     <!--End wrapper-->
     <!--Javascript-->
     {% javascripts
-        'https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false'
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyB4Sy1dPWdrSE7goKCIk8JqaJToNBQSacw&v=3.exp&amp;sensor=false'
         'bundles/clientwebsite/vendor/jquery-1.11.3.min.js'
         'bundles/clientwebsite/vendor/bootstrap/dist/js/bootstrap.min.js'
         'bundles/clientwebsite/vendor/jquery-migrate-1.2.1.js'
@@ -102,58 +104,60 @@
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script>
-        (function ($) {
-            "use strict";
-            $(document).ready(function () {
-                var styles = [
-                    {
-                        stylers: [
-                            {saturation: -100}
+    {% if content.location is defined and content.location is not empty %}
+        <script>
+            lat = {{ content.location.lat }};
+            long = {{ content.location.long }};
+            (function ($) {
+                "use strict";
+                $(document).ready(function () {
+                    var styles = [
+                            {
+                                stylers: [
+                                    {saturation: -100}
 
-                        ]
-                    }, {
-                        featureType: 'road',
-                        elementType: 'geometry',
-                        stylers: [
-                            {hue: "#74b7b0"},
-                            {visibility: 'simplified'}
-                        ]
-                    }, {
-                        featureType: 'road',
-                        elementType: 'labels',
-                        stylers: [
-                            {visibility: 'on'}
-                        ]
-                    }
-                ],
-                lat = 50.811819,
-                lng = 19.120309,
-                customMap = new google.maps.StyledMapType(styles, {name: 'Styled Map'}),
-                mapOptions = {
-                    zoom: 14,
-                    scrollwheel: false,
-                    disableDefaultUI: true,
-                    center: new google.maps.LatLng(lat, lng),
-                    mapTypeControlOptions: {
-                        mapTypeIds: [google.maps.MapTypeId.ROADMAP]
-                    }
-                },
-                map = new google.maps.Map(document.getElementById('map'), mapOptions),
-                myLatlng = new google.maps.LatLng(lat, lng),
-                marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    icon: {
-                        url: 'img/marker.png',
-                        scaledSize: new google.maps.Size(26, 42)
-                    }
+                                ]
+                            }, {
+                                featureType: 'road',
+                                elementType: 'geometry',
+                                stylers: [
+                                    {hue: "#74b7b0"},
+                                    {visibility: 'simplified'}
+                                ]
+                            }, {
+                                featureType: 'road',
+                                elementType: 'labels',
+                                stylers: [
+                                    {visibility: 'on'}
+                                ]
+                            }
+                        ],
+                        customMap = new google.maps.StyledMapType(styles, {name: 'Styled Map'}),
+                        mapOptions = {
+                            zoom: 14,
+                            scrollwheel: false,
+                            disableDefaultUI: true,
+                            center: new google.maps.LatLng(lat, long),
+                            mapTypeControlOptions: {
+                                mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+                            }
+                        },
+                        map = new google.maps.Map(document.getElementById('map'), mapOptions),
+                        myLatlng = new google.maps.LatLng(lat, long),
+                        marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            icon: {
+                                url: 'bundles/clientwebsite/dist/img/marker.png',
+                                scaledSize: new google.maps.Size(26, 42)
+                            }
+                        });
+                    map.mapTypes.set('map_style', customMap);
+                    map.setMapTypeId('map_style');
                 });
-                map.mapTypes.set('map_style', customMap);
-                map.setMapTypeId('map_style');
-            });
-            // End google map location
-        })(jQuery);
-    </script>
+                // End google map location
+            })(jQuery);
+        </script>
+    {% endif %}
     </body>
 </html>

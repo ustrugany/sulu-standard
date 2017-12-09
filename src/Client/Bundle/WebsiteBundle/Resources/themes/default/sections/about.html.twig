@@ -1,7 +1,10 @@
 <section id="about" class="bgWhite ofsInBottom">
     <!--About -->
     <div class="about">
-        {% include 'ClientWebsiteBundle:blocks:who-am-i.html.twig' with {contact: content} %}
+        {% include 'ClientWebsiteBundle:blocks:who-am-i.html.twig' with {
+            contact: content.aboutMeContacts|first,
+            description: content.aboutMeDescription
+        } %}
         {% include 'ClientWebsiteBundle:blocks:personal-skills.html.twig' with {contact: content} %}
         {% include 'ClientWebsiteBundle:blocks:experience.html.twig' with {contact: content}%}
         {% include 'ClientWebsiteBundle:blocks:education.html.twig' with {contact: content} %}

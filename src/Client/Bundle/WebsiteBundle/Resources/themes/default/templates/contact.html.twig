@@ -19,8 +19,12 @@
             </div>
             <!--End main title-->
             <!--Content-->
-            {% include 'ClientWebsiteBundle:blocks:contact-info.html.twig' with {content:content} %}
-            <!--End content-->
+            {% if content.aboutMeContacts is defined %}
+                {% include 'ClientWebsiteBundle:blocks:contact-info.html.twig' with {
+                    contact: content.aboutMeContacts|first
+                } %}
+                <!--End content-->
+            {% endif %}
             <!--Main title-->
             {#<div class="main-title">#}
                 {#<h1>send me an email</h1>#}
@@ -78,8 +82,8 @@
             <div class="button ofsInTop tCenter">
                 {% include 'ClientWebsiteBundle:blocks:divider-center.html.twig' %}
                 <!--Row-->
-                {% if content.cvPdf is defined and content.cvPdf is not empty %}
-                    {% set cvPdf = content.cvPdf|first %}
+                {% if content.aboutMeCvPdf is not empty %}
+                    {% set cvPdf = content.aboutMeCvPdf|first %}
                     <div class="row ">
                         <div class="col-md-12">
                             <a class="but opc-1 ico" href="{{ cvPdf.url }}">Download my cv</a>
