@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webspace xmlns="http://schemas.sulu.io/webspace/webspace"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/webspace/webspace http://schemas.sulu.io/webspace/webspace-1.0.xsd">
+
+    <name>piotr.strugacz.eu</name>
+    <key>piotr_strugacz_eu</key>
+
+    <localizations>
+        <localization language="en" shadow="auto">
+            <localization language="en" country="us" shadow="auto"/>
+        </localization>
+        <localization language="de">
+            <localization language="de" country="at"/>
+        </localization>
+    </localizations>
+
+    <theme>
+        <key>default</key>
+        <default-templates>
+            <default-template type="page">default</default-template>
+            <default-template type="homepage">overview</default-template>
+        </default-templates>
+
+        <error-templates>
+            <error-template default="true">ClientWebsiteBundle:views:error.html.twig</error-template>
+            <error-template code="404">ClientWebsiteBundle:views:error404.html.twig</error-template>
+        </error-templates>
+    </theme>
+
+    <navigation>
+        <contexts>
+            <context key="main">
+                <meta>
+                    <title lang="de">Hauptnavigation</title>
+                    <title lang="en">Mainnavigation</title>
+                    <title lang="pl">Nawigacja</title>
+                </meta>
+            </context>
+            <context key="footer">
+                <meta>
+                    <title lang="de">Footernavigation</title>
+                    <title lang="en">Footernavigation</title>
+                    <title lang="pl">Stopka</title>
+                </meta>
+            </context>
+        </contexts>
+    </navigation>
+
+    <portals>
+        <portal>
+            <name>piotr.strugacz.eu</name>
+            <key>piotr_strugacz_eu</key>
+            <resource-locator>
+                <strategy>tree</strategy>
+            </resource-locator>
+
+            <localizations>
+                <localization language="en" default="true"/>
+                <localization language="de"/>
+                <localization language="pl"/>
+            </localizations>
+
+            <environments>
+                <environment type="prod">
+                    <urls>
+                        <url language="en">piotr.strugacz.eu</url>
+                    </urls>
+                    <custom-urls>
+                        <custom-url>piotr.strugacz.eu/*</custom-url>
+                        <custom-url>*.piotr.strugacz.eu</custom-url>
+                        <custom-url>*.piotr.strugacz.eu/*</custom-url>
+                    </custom-urls>
+                </environment>
+                <environment type="dev">
+                    <urls>
+                        <url language="en">piotr.strugacz.test</url>
+                    </urls>
+                    <custom-urls>
+                        <custom-url>piotr.strugacz.test/*</custom-url>
+                        <custom-url>*.piotr.strugacz.test</custom-url>
+                        <custom-url>*.piotr.strugacz.test/*</custom-url>
+                    </custom-urls>
+                </environment>
+            </environments>
+        </portal>
+    </portals>
+</webspace>
+

@@ -32,16 +32,16 @@ composer.lock
 .DS_Store
 
 # webspaces
-/app/Resources/webspaces/*
-!/app/Resources/webspaces/*.dist
+#/app/Resources/webspaces/*
+#!/app/Resources/webspaces/*.dist
 
 # pages
-/app/Resources/pages/*
-!/app/Resources/pages/*.dist
+#/app/Resources/pages/*
+#!/app/Resources/pages/*.dist
 
 # snippets
-/app/Resources/snippets/*
-!/app/Resources/snippets/*.dist
+#/app/Resources/snippets/*
+#!/app/Resources/snippets/*.dist
 
 # old structure files
 /app/Resources/templates/*
